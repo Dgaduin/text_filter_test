@@ -6,8 +6,5 @@ public class MinLengthFilter(MinLengthFilterOptions options) : IWordFilter<MinLe
 {
     public MinLengthFilterOptions Options { get; private set; } = options;
 
-    public bool TestWord(string word)
-    {
-        return word.Length >= options.MinLength;
-    }
+    public bool TestWord(string word) => word.Length >= options.MinLength;
 }
