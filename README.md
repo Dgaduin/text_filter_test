@@ -25,4 +25,4 @@ var filteredText = engine.FilterText(text); -> var filteredText = engine.FilterT
 ### `IWordFilter`
 This could have been done with a delegate type, but classes gives us some more tools to work with, especially around the type system.
 ### Main program
-All parameter casting can b
+There can be a lot of functionality added here and validation like file paths, access, flags and others, but I feel this is out of scope for the general task.
