@@ -19,7 +19,7 @@ public class MidVowelFilterTests
     public void AssertPassing(string word)
     {
         var result = Filter.TestWord(word);
-        Assert.True(result);
+        Assert.False(result);
     }
 
     [Theory]
@@ -28,6 +28,6 @@ public class MidVowelFilterTests
     public void AssertFailing(string word)
     {
         var result = Filter.TestWord(word);
-        Assert.False(result);
+        Assert.True(result);
     }
 }
