@@ -18,6 +18,10 @@ Give the text was given in a PDF I was not sure to keep or to remove the line br
 ### `FilterEngine`
 For a real implementation an approach that is backed by a sortable and re-orderable structure would be a better approach, but for this task `List` gives us a lot of nice methods to initiliase and expand the structure instead of having to proxy all of them ourselves (including parameter validation).
 In a bigger solution with more features it would be useful to abstract the interface for it.
+Also the outputs of this feature can end up containing a lot of whitespace that might need trimming - there is an optional trim flag that can be passed to the call by amending this line:
+```csharp
+var filteredText = engine.FilterText(text); -> var filteredText = engine.FilterText(text,true);
+```
 ### `IWordFilter`
 This could have been done with a delegate type, but classes gives us some more tools to work with, especially around the type system.
 ### Main program

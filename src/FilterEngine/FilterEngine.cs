@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.RegularExpressions;
 using TextFilter.Abstractions;
 
 namespace TextFilter.Engine;
@@ -28,7 +29,7 @@ public class FilterEngine : List<IWordFilter>
     }
 
 
-    public string FilterText(string text)
+    public string FilterText(string text, bool trim = false)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(text);
 
@@ -51,6 +52,9 @@ public class FilterEngine : List<IWordFilter>
                 resultBuffer.Append(c);
             }
         }
-        return resultBuffer.ToString();
+        var result = resultBuffer.ToString();
+        return trim ?
+            Regex.Replace(result, @"\s+", " ") :
+            result;
     }
 }
