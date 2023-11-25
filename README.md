@@ -1,5 +1,5 @@
 # Text Filter Test
-An modular solution to allow for ordering multiple filters to apply to a single instance of a text to in-place replace words that don't pass certain filters.
+A modular solution to allow for ordering multiple filters to apply to a single instance of a text, with in-place replacement of words that don't pass certain filters.
 
 The core design is based around the `IWordFilter` interface which exposes a single method called `ShouldFilterOut`, which shows if a word should be removed or kept.
 
