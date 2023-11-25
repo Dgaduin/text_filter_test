@@ -1,3 +1,4 @@
+using System.Text;
 using TextFilter.Abstractions;
 
 namespace TextFilter.Engine;
@@ -24,5 +25,32 @@ public class FilterEngine : List<IWordFilter>
             flag = flag || filter.ShouldFilterOut(word);
         }
         return flag;
+    }
+
+
+    public string FilterText(string text)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(text);
+
+        var resultBuffer = new StringBuilder();
+        var wordBuffer = new StringBuilder();
+        foreach (var c in text)
+        {
+            if (Char.IsLetter(c))
+                wordBuffer.Append(c);
+            else
+            {
+                if (wordBuffer.Length > 0)
+                {
+                    var word = wordBuffer.ToString();
+                    wordBuffer.Clear();
+
+                    var isFilteredOut = ShouldFilterOut(word);
+                    if (!isFilteredOut) resultBuffer.Append(word);
+                }
+                resultBuffer.Append(c);
+            }
+        }
+        return resultBuffer.ToString();
     }
 }

@@ -30,7 +30,7 @@ public class FilterEngineTests
     [InlineData("abc    ")]
     [InlineData("     abc")]
     [InlineData("a  bc")]
-    public void AssertWhitespaceCheck(string word)
+    public void AssertWhitespaceCheckOnShould(string word)
     {
         Assert.ThrowsAny<Exception>(() => Engine.ShouldFilterOut(word));
     }
@@ -42,7 +42,7 @@ public class FilterEngineTests
     [InlineData("gone")]
     [InlineData("clearly")]
     [InlineData("council")]
-    public void AssertPassingWords(string word)
+    public void AssertPassingWordsOnShould(string word)
     {
         var result = Engine.ShouldFilterOut(word);
         Assert.False(result);
@@ -55,9 +55,35 @@ public class FilterEngineTests
     [InlineData("train")]
     [InlineData("court")]
     [InlineData("bartering")]
-    public void AssertFailingWords(string word)
+    public void AssertFailingWordsOnShould(string word)
     {
         var result = Engine.ShouldFilterOut(word);
         Assert.True(result);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("    ")]
+    [InlineData("\r")]
+    [InlineData("\n")]
+    [InlineData("   \n")]
+    [InlineData("\n\r   \n\r")]
+    public void AssertWhitespaceCheckOnFilter(string word)
+    {
+        Assert.ThrowsAny<Exception>(() => Engine.FilterText(word));
+    }
+
+    //We expect to remove words with <3 letters and containing 't'
+    [Theory]
+    [InlineData("At the table", "  ")]
+    [InlineData("How are you doing?", "How are you doing?")]
+    [InlineData("Where is the cat?", "Where   ?")]
+    [InlineData("Good night!", "Good !")]
+    [InlineData("{{!test}}", "{{!}}")]
+    [InlineData("drama;cost;up;dog;cats;))told you((", "drama;;;dog;;)) you((")]
+    public void AssertFilterOut(string input, string expected)
+    {
+        var result = Engine.FilterText(input);
+        Assert.Equal(expected, result);
     }
 }
