@@ -28,7 +28,12 @@ public class FilterEngine : List<IWordFilter>
         return flag;
     }
 
-
+    /// <summary>
+    /// Passes the text through the sets of filters present
+    /// </summary>
+    /// <param name="text">The text to filter</param>
+    /// <param name="trim">Should the result be trimmed or not</param>
+    /// <returns>The filtered text</returns>
     public string FilterText(string text, bool trim = false)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(text);
