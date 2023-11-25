@@ -6,11 +6,7 @@ public class MidVowelFilterTests
 {
     private readonly MidVowelFilter Filter;
 
-    public MidVowelFilterTests()
-    {
-        var options = new MidVowelFilterOptions();
-        Filter = new MidVowelFilter(options);
-    }
+    public MidVowelFilterTests() => Filter = new MidVowelFilter();
 
     [Theory]
     [InlineData("clean")]

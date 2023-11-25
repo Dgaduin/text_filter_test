@@ -2,7 +2,7 @@ using TextFilter.Abstractions;
 
 namespace TextFilter.Filters;
 
-public class CharExclusionFilter(CharExclusionFilterOptions options) : IWordFilter<CharExclusionFilterOptions>
+public class CharExclusionFilter(CharExclusionFilterOptions options) : IWordFilterWithOptions<CharExclusionFilterOptions>
 {
     public CharExclusionFilterOptions Options { get; init; } = options;
 

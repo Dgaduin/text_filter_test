@@ -2,10 +2,9 @@ using TextFilter.Abstractions;
 
 namespace TextFilter.Filters;
 
-public class MidVowelFilter(MidVowelFilterOptions options) : IWordFilter<MidVowelFilterOptions>
+public class MidVowelFilter : IWordFilter
 {
     private static readonly char[] vowels = ['a', 'e', 'i', 'o', 'u'];
-    public MidVowelFilterOptions Options { get; init; } = options;
 
     public bool TestWord(string word)
     {
