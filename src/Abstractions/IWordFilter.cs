@@ -1,6 +1,6 @@
 ﻿namespace TextFilter.Abstractions;
 
-public interface IWordFilter<T> where T : IFilterOptions
+public interface IWordFilter<T> where T : IWordFilterOptions
 {
     T Options { get; }
     /// <summary>
