@@ -15,8 +15,8 @@ public class MinLengthFilterTests
     {
         var options = new MinLengthFilterOptions(minLength);
         var filter = new MinLengthFilter(options);
-        var result = filter.TestWord(word);
-        Assert.True(result);
-        Assert.True(minLength <= word.Length);
+        var result = filter.ShouldFilterOut(word);
+        Assert.False(result);
+        Assert.False(minLength > word.Length);
     }
 }

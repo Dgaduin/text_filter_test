@@ -15,7 +15,7 @@ public class CharExclusionFilterTests
     {
         var options = new CharExclusionFilterOptions(c);
         var filter = new CharExclusionFilter(options);
-        var result = filter.TestWord(word);
-        Assert.False(result);
+        var result = filter.ShouldFilterOut(word);
+        Assert.True(result);
     }
 }

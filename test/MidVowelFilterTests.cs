@@ -14,8 +14,8 @@ public class MidVowelFilterTests
     [InlineData("currently")]
     public void AssertPassing(string word)
     {
-        var result = Filter.TestWord(word);
-        Assert.False(result);
+        var result = Filter.ShouldFilterOut(word);
+        Assert.True(result);
     }
 
     [Theory]
@@ -23,7 +23,7 @@ public class MidVowelFilterTests
     [InlineData("rather")]
     public void AssertFailing(string word)
     {
-        var result = Filter.TestWord(word);
-        Assert.True(result);
+        var result = Filter.ShouldFilterOut(word);
+        Assert.False(result);
     }
 }
