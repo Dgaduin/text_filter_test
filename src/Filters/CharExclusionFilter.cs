@@ -6,8 +6,5 @@ public class CharExclusionFilter(CharExclusionFilterOptions options) : IWordFilt
 {
     public CharExclusionFilterOptions Options { get; init; } = options;
 
-    public bool TestWord(string word)
-    {
-        throw new NotImplementedException();
-    }
+    public bool TestWord(string word) => !word.Contains(Options.Char);
 }
