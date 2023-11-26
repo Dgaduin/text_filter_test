@@ -20,12 +20,11 @@ public class FilterEngine : List<IWordFilter>
         ArgumentException.ThrowIfNullOrWhiteSpace(word);
         if (word.Any(char.IsWhiteSpace)) throw new ArgumentException("Single word checks should not include whitespace");
 
-        var flag = false;
         foreach (var filter in this)
         {
-            flag = flag || filter.ShouldFilterOut(word);
+            if (filter.ShouldFilterOut(word)) return true;
         }
-        return flag;
+        return false;
     }
 
     /// <summary>
